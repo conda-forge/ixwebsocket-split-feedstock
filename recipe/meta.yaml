@@ -1,5 +1,5 @@
 {% set name = "ixwebsocket" %}
-{% set version = "11.4.6" %}
+{% set version = "12.0.1" %}
 
 package:
   name: {{ name|lower }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/machinezone/IXWebSocket/archive/v{{ version }}.tar.gz
-  sha256: c024334f8e45980836c67008979a884d6dcc5ef067dd2eb1fa7241f4c17ddc32
+  sha256: d23bdc91dbfe2b9ae13c322d539392d7a6b8b506560f41c90e227fa0f86a2405
 
 build:
   number: 0
