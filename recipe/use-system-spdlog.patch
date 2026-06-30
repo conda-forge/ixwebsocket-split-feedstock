@@ -1,0 +1,54 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 375878f..a6d34a7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -314,14 +314,7 @@ if (UNIX)
+ endif()
+ 
+ if (USE_WS OR USE_TEST)
+-  include(FetchContent)
+-  FetchContent_Declare(spdlog
+-      GIT_REPOSITORY "https://github.com/gabime/spdlog"
+-      GIT_TAG "v1.17.0"
+-      GIT_SHALLOW 1) 
+-
+-  FetchContent_MakeAvailable(spdlog)
+-
++  find_package(spdlog CONFIG REQUIRED)
+   if (USE_WS)
+     add_subdirectory(ws)
+   endif()
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 688ccfe..1260ec1 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -69,7 +69,7 @@ target_include_directories(ixwebsocket_test PRIVATE
+   ../third_party
+ )
+ target_link_libraries(ixwebsocket_test ixwebsocket)
+-target_link_libraries(ixwebsocket_test spdlog)
++target_link_libraries(ixwebsocket_test spdlog::spdlog)
+ 
+ foreach(TEST_TARGET_NAME ${TEST_TARGET_NAMES})
+   add_executable(${TEST_TARGET_NAME}
+@@ -92,7 +92,7 @@ foreach(TEST_TARGET_NAME ${TEST_TARGET_NAMES})
+   target_link_libraries(${TEST_TARGET_NAME} ixwebsocket_test)
+   target_link_libraries(${TEST_TARGET_NAME} ixwebsocket)
+ 
+-  target_link_libraries(${TEST_TARGET_NAME} spdlog)
++  target_link_libraries(${TEST_TARGET_NAME} spdlog::spdlog)
+ 
+   add_test(NAME ${TEST_TARGET_NAME}
+            COMMAND ${TEST_TARGET_NAME}
+diff --git a/ws/CMakeLists.txt b/ws/CMakeLists.txt
+index 5ca2a43..b0fd60a 100644
+--- a/ws/CMakeLists.txt
++++ b/ws/CMakeLists.txt
+@@ -27,6 +27,6 @@ add_executable(ws
+ # library with the most dependencies come first
+ target_link_libraries(ws ixwebsocket)
+ 
+-target_link_libraries(ws spdlog)
++target_link_libraries(ws spdlog::spdlog)
+ 
+ install(TARGETS ws RUNTIME DESTINATION bin)

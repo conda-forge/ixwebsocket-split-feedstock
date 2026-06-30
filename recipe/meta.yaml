@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/machinezone/IXWebSocket/archive/v{{ version }}.tar.gz
   sha256: d23bdc91dbfe2b9ae13c322d539392d7a6b8b506560f41c90e227fa0f86a2405
+  patches:
+    - use-system-spdlog.patch
 
 build:
   number: 0
@@ -23,6 +25,7 @@ requirements:
   host:
     - zlib
     - openssl
+    - spdlog >=1.17.0,<1.18.0a0
   run:
 
 outputs:
@@ -57,8 +60,12 @@ outputs:
         - {{ stdlib('c') }}
       host:
         - {{ pin_subpackage('libixwebsocket', exact=True) }}
+        - fmt
+        - spdlog >=1.17.0,<1.18.0a0
       run:
         - {{ pin_subpackage('libixwebsocket', exact=True) }}
+        - fmt
+        - spdlog >=1.17.0,<1.18.0a0
     files:
       - lib/libixwebsocket.so  # [linux]
       - lib/libixwebsocket.dylib  # [osx]
