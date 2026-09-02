@@ -1,0 +1,98 @@
+schema_version: 1
+
+context:
+  name: ixwebsocket
+  version: "12.0.1"
+
+recipe:
+  name: ${{ name }}-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/machinezone/IXWebSocket/archive/v${{ version }}.tar.gz
+  sha256: d23bdc91dbfe2b9ae13c322d539392d7a6b8b506560f41c90e227fa0f86a2405
+  patches:
+    - use-system-spdlog.patch
+
+build:
+  number: 1
+  skip:
+    - win
+  script: build
+
+outputs:
+  - package:
+      name: libixwebsocket
+    build:
+      files:
+        - if: linux
+          then: lib/libixwebsocket.so.*
+        - if: osx
+          then: lib/libixwebsocket.*.dylib
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ compiler("cxx") }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - make
+      host:
+        - zlib
+        - openssl
+        - spdlog >=1.17.0,<1.18.0a0
+      run_exports:
+        - ${{ pin_subpackage("libixwebsocket", upper_bound="x.x.x") }}
+    tests:
+      - script: test ! -f ${PREFIX}/lib/libixwebsocket${SHLIB_EXT}
+
+  - package:
+      name: ixwebsocket
+    build:
+      files:
+        - if: linux
+          then: lib/libixwebsocket.so
+        - if: osx
+          then: lib/libixwebsocket.dylib
+        - include/ixwebsocket/
+        - lib/cmake/ixwebsocket/
+        - lib/pkgconfig/ixwebsocket.pc
+        - bin/ws
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ compiler("cxx") }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - make
+      host:
+        - zlib
+        - openssl
+        - ${{ pin_subpackage("libixwebsocket", exact=True) }}
+        - fmt
+        - spdlog >=1.17.0,<1.18.0a0
+      run:
+        - ${{ pin_subpackage("libixwebsocket", exact=True) }}
+        - fmt
+        - spdlog >=1.17.0,<1.18.0a0
+      run_exports:
+        - ${{ pin_subpackage("libixwebsocket", upper_bound="x.x.x") }}
+    tests:
+      - script: ws --help
+
+about:
+  homepage: https://machinezone.github.io/IXWebSocket/
+  summary: IXWebSocket is a C++ library for WebSocket client and server development.
+  description: |
+    IXWebSocket is a C++ library for WebSocket client and server development. It has
+    minimal dependencies (no boost), is very simple to use and support everything you'll
+    likely need for websocket dev (SSL, deflate compression, compiles on most platforms, etc...).
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  documentation: https://machinezone.github.io/IXWebSocket
+  repository: https://github.com/machinezone/IXWebSocket
+
+extra:
+  feedstock-name: ixwebsocket-split
+  recipe-maintainers:
+    - zklaus
+    - timkpaine
