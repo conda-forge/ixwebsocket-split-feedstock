@@ -17,7 +17,6 @@ IXWebSocket is a C++ library for WebSocket client and server development. It has
 minimal dependencies (no boost), is very simple to use and support everything you'll
 likely need for websocket dev (SSL, deflate compression, compiles on most platforms, etc...).
 
-
 Current build status
 ====================
 
@@ -75,31 +74,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ixwebsocket, libixwebsocket` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install ixwebsocket libixwebsocket
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install ixwebsocket libixwebsocket
 ```
 
-It is possible to list all of the versions of `ixwebsocket` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add ixwebsocket libixwebsocket
+# for installing globally
+pixi global install ixwebsocket libixwebsocket
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `ixwebsocket` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search ixwebsocket --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search ixwebsocket --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search ixwebsocket --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -111,6 +152,8 @@ mamba repoquery whoneeds ixwebsocket --channel conda-forge
 # List dependencies of `ixwebsocket`:
 mamba repoquery depends ixwebsocket --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
@@ -181,7 +224,4 @@ Feedstock Maintainers
 
 * [@timkpaine](https://github.com/timkpaine/)
 * [@zklaus](https://github.com/zklaus/)
-
-
-<!-- dummy commit to enable rerendering -->
 
