@@ -1,0 +1,29 @@
+diff --git a/ws/CMakeLists.txt b/ws/CMakeLists.txt
+--- a/ws/CMakeLists.txt
++++ b/ws/CMakeLists.txt
+@@ -21,11 +21,9 @@ include_directories(ws ..)
+ add_executable(ws
+   ws.cpp)
+ 
+-# CLI11 is vendored as a single header in third_party, and included as a system
+-# header so that its warnings do not show up in our builds
+-target_include_directories(ws SYSTEM PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../third_party)
++find_package(CLI11 2.6.2 CONFIG REQUIRED)
+ 
+ # library with the most dependencies come first
+-target_link_libraries(ws ixwebsocket)
++target_link_libraries(ws ixwebsocket CLI11::CLI11)
+ 
+ install(TARGETS ws RUNTIME DESTINATION bin)
+diff --git a/ws/ws.cpp b/ws/ws.cpp
+--- a/ws/ws.cpp
++++ b/ws/ws.cpp
+@@ -8,7 +8,7 @@
+ // Main driver for websocket utilities
+ //
+ 
+-#include <CLI11.hpp>
++#include <CLI/CLI.hpp>
+ #include <atomic>
+ #include <chrono>
+ #include <common/IXLog.h>

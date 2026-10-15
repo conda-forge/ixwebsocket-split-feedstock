@@ -3,6 +3,27 @@ About ixwebsocket-split-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ixwebsocket-split-feedstock/blob/main/LICENSE.txt)
 
+
+About ixwebsocket-split
+-----------------------
+
+Home: https://machinezone.github.io/IXWebSocket/
+
+Package license: BSD-3-Clause
+
+Summary: IXWebSocket is a C++ library for WebSocket client and server development.
+
+Development: https://github.com/machinezone/IXWebSocket
+
+Documentation: https://machinezone.github.io/IXWebSocket
+
+IXWebSocket is a C++ library for WebSocket client and server development. It has
+minimal dependencies (no boost), is very simple to use and support everything you'll
+likely need for websocket dev (SSL, deflate compression, compiles on most platforms, etc...).
+
+About libixwebsocket
+--------------------
+
 Home: https://machinezone.github.io/IXWebSocket/
 
 Package license: BSD-3-Clause

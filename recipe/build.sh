@@ -2,6 +2,8 @@
 
 set -xeo pipefail
 
+sed -n '1,/^#pragma once/p' "${SRC_DIR}/third_party/CLI11.hpp" | sed '$d; s@^// *@@' > "${SRC_DIR}/CLI11-LICENSE.txt"
+
 mkdir build
 cd build
 

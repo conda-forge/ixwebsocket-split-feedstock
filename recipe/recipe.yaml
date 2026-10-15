@@ -12,7 +12,8 @@ source:
   url: https://github.com/machinezone/IXWebSocket/archive/v${{ version }}.tar.gz
   sha256: 55f3a5d3a1a2c5f19d737c24e6aced28d1200f8f5deb45ecd8e5d46f765b5288
   patches:
-    - use-system-spdlog.patch
+    # Use conda-forge's CLI11 headers for the ws command.
+    - use-system-cli11.patch
 
 build:
   number: 0
@@ -39,7 +40,7 @@ outputs:
       host:
         - zlib
         - openssl
-        - spdlog >=1.17.0,<1.18.0a0
+        - cli11 >=2.6.2
       run_exports:
         - ${{ pin_subpackage("libixwebsocket", upper_bound="x.x.x") }}
     tests:
@@ -68,16 +69,17 @@ outputs:
         - zlib
         - openssl
         - ${{ pin_subpackage("libixwebsocket", exact=True) }}
-        - fmt
-        - spdlog >=1.17.0,<1.18.0a0
+        - cli11 >=2.6.2
       run:
         - ${{ pin_subpackage("libixwebsocket", exact=True) }}
-        - fmt
-        - spdlog >=1.17.0,<1.18.0a0
       run_exports:
         - ${{ pin_subpackage("libixwebsocket", upper_bound="x.x.x") }}
     tests:
       - script: ws --help
+    about:
+      license_file:
+        - LICENSE.txt
+        - CLI11-LICENSE.txt
 
 about:
   homepage: https://machinezone.github.io/IXWebSocket/
