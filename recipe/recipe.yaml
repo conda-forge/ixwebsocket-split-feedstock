@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ixwebsocket
-  version: "12.0.1"
+  version: "12.1.0"
 
 recipe:
   name: ${{ name }}-split
@@ -10,12 +10,12 @@ recipe:
 
 source:
   url: https://github.com/machinezone/IXWebSocket/archive/v${{ version }}.tar.gz
-  sha256: d23bdc91dbfe2b9ae13c322d539392d7a6b8b506560f41c90e227fa0f86a2405
+  sha256: 55f3a5d3a1a2c5f19d737c24e6aced28d1200f8f5deb45ecd8e5d46f765b5288
   patches:
     - use-system-spdlog.patch
 
 build:
-  number: 1
+  number: 0
   skip:
     - win
   script: build
