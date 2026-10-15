@@ -14,6 +14,8 @@ source:
   patches:
     # Use conda-forge's CLI11 headers for the ws command.
     - use-system-cli11.patch
+    # Link ws directly with the platform thread library for std::thread.
+    - link-ws-threads.patch
 
 build:
   number: 0
