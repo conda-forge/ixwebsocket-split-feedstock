@@ -1,0 +1,11 @@
+--- a/ws/CMakeLists.txt
++++ b/ws/CMakeLists.txt
+@@ -24,6 +24,7 @@
+ find_package(CLI11 2.6.2 CONFIG REQUIRED)
++find_package(Threads REQUIRED)
+ 
+ # library with the most dependencies come first
+-target_link_libraries(ws ixwebsocket CLI11::CLI11)
++target_link_libraries(ws ixwebsocket CLI11::CLI11 Threads::Threads)
+ 
+ install(TARGETS ws RUNTIME DESTINATION bin)
