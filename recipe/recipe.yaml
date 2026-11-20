@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ixwebsocket
-  version: "12.1.0"
+  version: "13.0.0"
 
 recipe:
   name: ${{ name }}-split
@@ -10,12 +10,14 @@ recipe:
 
 source:
   url: https://github.com/machinezone/IXWebSocket/archive/v${{ version }}.tar.gz
-  sha256: 55f3a5d3a1a2c5f19d737c24e6aced28d1200f8f5deb45ecd8e5d46f765b5288
+  sha256: 39620f5b7f85f806e8189cffde9c3ffbb37f8374fccf57d3e5aaced929690ea3
   patches:
     # Use conda-forge's CLI11 headers for the ws command.
     - use-system-cli11.patch
     # Link ws directly with the platform thread library for std::thread.
     - link-ws-threads.patch
+    # Link the OpenSSL regression test to libraries it calls directly.
+    - link-openssl-test.patch
 
 build:
   number: 0
