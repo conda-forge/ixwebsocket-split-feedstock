@@ -16,6 +16,8 @@ source:
     - use-system-cli11.patch
     # Link ws directly with the platform thread library for std::thread.
     - link-ws-threads.patch
+    # Link the OpenSSL regression test to libraries it calls directly.
+    - link-openssl-test.patch
 
 build:
   number: 0
