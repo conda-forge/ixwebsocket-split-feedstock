@@ -18,6 +18,8 @@ source:
     - link-ws-threads.patch
     # Link the OpenSSL regression test to libraries it calls directly.
     - link-openssl-test.patch
+    # Propagate the thread library to tests that use std::thread directly.
+    - link-test-threads.patch
 
 build:
   number: 0

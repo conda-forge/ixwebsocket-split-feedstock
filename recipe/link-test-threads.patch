@@ -1,0 +1,11 @@
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -104,6 +104,8 @@
+ )
+ target_compile_definitions(ixwebsocket_test PRIVATE ${TEST_PROGRAMS_DEFINITIONS})
+ 
++find_package(Threads REQUIRED)
++target_link_libraries(ixwebsocket_test Threads::Threads)
+ target_link_libraries(ixwebsocket_test Catch2)
+ target_link_libraries(ixwebsocket_test ixwebsocket)
+ if (WIN32 AND USE_TLS AND USE_MBED_TLS)
