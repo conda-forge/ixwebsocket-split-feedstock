@@ -1,0 +1,10 @@
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -133,6 +133,7 @@
+ endforeach()
+ 
+ if (TARGET IXSocketOpenSSLWriteTest)
++  target_link_libraries(IXSocketOpenSSLWriteTest ${OPENSSL_LIBRARIES})
+   target_compile_definitions(IXSocketOpenSSLWriteTest PRIVATE
+     IX_OPENSSL_TEST_OUTPUT_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+ endif()

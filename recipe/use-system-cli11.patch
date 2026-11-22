@@ -1,9 +1,9 @@
 diff --git a/ws/CMakeLists.txt b/ws/CMakeLists.txt
 --- a/ws/CMakeLists.txt
 +++ b/ws/CMakeLists.txt
-@@ -21,11 +21,9 @@ include_directories(ws ..)
- add_executable(ws
-   ws.cpp)
+@@ -16,11 +16,9 @@
+ 
+ target_compile_options(ws PRIVATE ${IXWEBSOCKET_WARNING_FLAGS})
  
 -# CLI11 is vendored as a single header in third_party, and included as a system
 -# header so that its warnings do not show up in our builds
@@ -24,6 +24,6 @@ diff --git a/ws/ws.cpp b/ws/ws.cpp
  
 -#include <CLI11.hpp>
 +#include <CLI/CLI.hpp>
+ #include <algorithm>
  #include <atomic>
  #include <chrono>
- #include <common/IXLog.h>
